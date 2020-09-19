@@ -31,7 +31,10 @@
 
             <!-- Page Content -->
             <main>
-{{--                {{ $slot }}--}}
+            <?php    use Illuminate\Support\Facades\Log;
+                log::debug('gdd 0400 $events= event::all();');
+                $events= event::all();?>
+                {{ $slot }}
             </main>
         </div>
 

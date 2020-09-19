@@ -1,3 +1,6 @@
+use Illuminate\Support\Facades\Log;
+log::debug('gdd 04.1 @extends('layouts.app')');
+$events= event::all();?>
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -11,19 +14,22 @@
 {{--                        </div>--}}
 {{--                    @endif--}}
 
-<!--                   --><?php //$events = event::all();?>
+                    <?php
+                    use Illuminate\Support\Facades\Log;
+                    log::debug('gdd 04 $events= event::all();');
+                    $events= event::all();?>
                     <form name='f1' method="POST" action="process_post.php">
                         <fieldset>
                             <legend> Select an Event </legend>
-{{--                            $events= events::all();--}}
-{{--                            <select class="dropdown" id="eventsdd" name="eventsdropdown" title="Events Dropdown"  onclick="doclick(this)" >--}}
-{{--                              <?php--}}
-{{--                                 foreach ($events as $event){?>--}}
-{{--                                 <option value=--}}
-{{--                                   <?php echo $event['id'] ?>">"--}}
-{{--                                   <?php echo $event['event'];  ?>--}}
-{{--                                 </option>--}}
-{{--                            </select> <?php } ?>--}}
+
+                            <select class="dropdown" id="eventsdd" name="eventsdropdown" title="Events Dropdown"  onclick="doclick(this)" >
+                              <?php
+                                 foreach ($events as $event){?>
+                                 <option value=
+                                   <?php echo $event['id'] ?>">"
+                                   <?php echo $event['event'];  ?>
+                                 </option>
+                            </select> <?php } ?>
 
              <p>
 

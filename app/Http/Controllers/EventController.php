@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller{
-$event = Event::latest()->paginate(5);
+//$event = Event::latest()->paginate(5);
 
     public function index()
 {
+    Log::info('gdd 05 event index()');
 
-    return view('event.index',compact('event'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+    $events = \App\Event::all();
+
+    return view('viewevents', ['allEvents' => $events]);
+//    return view('event.index',compact('event'))
+//        ->with('i', (request()->input('page', 1) - 1) * 5);
 }
 
     /**
@@ -21,6 +26,7 @@ $event = Event::latest()->paginate(5);
      */
     public function create()
 {
+    Log::info('gdd 06 event.create');
     return view('event.create');
 }
 
@@ -32,12 +38,20 @@ $event = Event::latest()->paginate(5);
      */
     public function store(Request $request)
 {
+    Log::info('gdd 07 event store() ' .$request->id);
     $request->validate([
         'event' => 'required',
-        'detail' => 'required',
+        'description' => 'required'
     ]);
-
-    Event::create($request->all());
+    \App\Event::create([
+        'id' => $request->get('id'),
+        'user->id' => $request->get('user->id'),
+        'posts->id' => $request->get('posts->id'),
+        'event' => $request->get('event'),
+        'description' => $request->get('description')
+    ]);
+//    return redirect('/events');
+//        Event::create($request->all());
 
     return redirect()->route('event.index')
         ->with('success','Event created successfully.');
@@ -51,6 +65,7 @@ $event = Event::latest()->paginate(5);
      */
     public function show(Event $event)
 {
+    Log::info('gdd 08 event show()'  .$event->id);
     return view('event.show',compact('event'));
 }
 
@@ -62,6 +77,7 @@ $event = Event::latest()->paginate(5);
      */
     public function edit(event $event)
 {
+    Log::info('gdd 09 event edit()' .$event->id);
     return view('event.edit',compact('event'));
 }
 
@@ -74,6 +90,7 @@ $event = Event::latest()->paginate(5);
      */
     public function update(Request $request, event $event)
 {
+    Log::info('gdd 10 event update()'  . $event->id);
     $request->validate([
         'event' => 'required',
         'detail' => 'required',
@@ -93,6 +110,7 @@ $event = Event::latest()->paginate(5);
      */
     public function destroy(event $event)
 {
+    Log::info('gdd 11 event destroy()'  .$event->id);
     $event->delete();
 
     return redirect()->route('event.index')
