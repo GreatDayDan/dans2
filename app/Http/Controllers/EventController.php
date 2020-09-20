@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller{
 //$event = Event::latest()->paginate(5);
-
+//    public $event;
+//    public $data = 'this is a test';
     public function index()
 {
-    Log::info('gdd 05 event index()');
+    Log::info('gdd 05 event index() HomeController');
+    $events = event::all();
+    return view('events.index', compact(['events']));
 
-    $events = \App\Event::all();
+//    $events = \App\Event::all();
 
-    return view('viewevents', ['allEvents' => $events]);
+//    return view('viewevents', ['allEvents' => $events]);
 //    return view('event.index',compact('event'))
 //        ->with('i', (request()->input('page', 1) - 1) * 5);
 }
@@ -26,7 +30,7 @@ class EventController extends Controller{
      */
     public function create()
 {
-    Log::info('gdd 06 event.create');
+    Log::info('gdd 06 event.create HomeController');
     return view('event.create');
 }
 
@@ -38,18 +42,30 @@ class EventController extends Controller{
      */
     public function store(Request $request)
 {
-    Log::info('gdd 07 event store() ' .$request->id);
+    Log::info('gdd 07 event store() HomeController' .$request->id);
     $request->validate([
-        'event' => 'required',
-        'description' => 'required'
+        'event'=>'required',
+        'deascription'=>'required'
     ]);
-    \App\Event::create([
-        'id' => $request->get('id'),
+    $event = new event([
         'user->id' => $request->get('user->id'),
-        'posts->id' => $request->get('posts->id'),
+        'posts-id' => $request->get('posts-id'),
         'event' => $request->get('event'),
-        'description' => $request->get('description')
+        'description' => $request->get('job_title')
     ]);
+    $event->save();
+    return redirect('/events')->with('success', 'Event saved!');
+//    $request->validate([
+//        'event' => 'required',
+//        'description' => 'required'
+//    ]);
+//    \App\Event::create([
+//        'id' => $request->get('id'),
+//        'user->id' => $request->get('user->id'),
+//        'posts->id' => $request->get('posts->id'),
+//        'event' => $request->get('event'),
+//        'description' => $request->get('description')
+//    ]);
 //    return redirect('/events');
 //        Event::create($request->all());
 
@@ -65,7 +81,7 @@ class EventController extends Controller{
      */
     public function show(Event $event)
 {
-    Log::info('gdd 08 event show()'  .$event->id);
+    Log::info('gdd 08 event show() HomeController'  .$event->id);
     return view('event.show',compact('event'));
 }
 
@@ -77,9 +93,11 @@ class EventController extends Controller{
      */
     public function edit(event $event)
 {
-    Log::info('gdd 09 event edit()' .$event->id);
+    Log::info('gdd 09 event edit() HomeController'  .$event->id);
+    $event = event::find($event->id);
     return view('event.edit',compact('event'));
 }
+
 
     /**
      * Update the specified resource in storage.
@@ -89,18 +107,20 @@ class EventController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, event $event)
-{
-    Log::info('gdd 10 event update()'  . $event->id);
-    $request->validate([
-        'event' => 'required',
-        'detail' => 'required',
-    ]);
-
-    $event->update($request->all());
-
-    return redirect()->route('event.index')
-        ->with('success','event updated successfully');
-}
+    {
+        Log::info('gdd 10 event update() HomeController  '  . $event->id);
+        $request->validate([
+            'event'=>'required',
+            'description'=>'required'
+        ]);
+        $event = event::find($id);
+        $event->id =  $request->get('id');
+        $event->user->id = $request->get('user->id');
+        $event->posts->id = $request->get('posts->id');
+        $event->description = $request->get('description');
+        $event->save();
+        return redirect('/event')->with('success', 'event updated!');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -110,7 +130,8 @@ class EventController extends Controller{
      */
     public function destroy(event $event)
 {
-    Log::info('gdd 11 event destroy()'  .$event->id);
+    Log::info('gdd 11 Event destroy HomeController  '  .$event->id);
+    $event = event::find($event->$event->id);
     $event->delete();
 
     return redirect()->route('event.index')

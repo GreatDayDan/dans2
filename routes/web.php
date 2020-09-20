@@ -23,16 +23,27 @@ Route::get('/', function () {
 //})->name('dashboard');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home3', 'HomeController@index');
+Route::get('/home2', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::get('/home', function () {
-//    log::debyg('gdd 02 Route::get(/home,  function () {return view(welcome');
-//    return view('home');
-//});
+Route::get('/home1', function () {
+    log::debug('gdd 02 Route::get(/home,  function () {return view(welcome');
+    return view('welcome');
+});
 
+Route::get('/event', function () {
+    log::debug('gdd 03 Route::get(/event,  function () {return view(eventsdd)');
+    return view('event');
+});
 Route::get('/events', function () {
-    log::debug('gdd 03 Route::get(/events,  function () {return view(eventsdd)');
-    return view('eventsdd');
+    log::debug('gdd 031 Route::get(/events,  function () {return view(eventsdd)');
+    return view('events');
 });
 //
 //Route::resource('/events', 'EventController');
+
+
+Route::get('/about', function () {
+   log::debug('gdd 03.1 Route about');
+   return view('about');
+});

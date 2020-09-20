@@ -1,6 +1,3 @@
-use Illuminate\Support\Facades\Log;
-log::debug('gdd 04.1 @extends('layouts.app')');
-$events= event::all();?>
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -16,25 +13,29 @@ $events= event::all();?>
 
                     <?php
                     use Illuminate\Support\Facades\Log;
-                    log::debug('gdd 04 $events= event::all();');
-                    $events= event::all();?>
+                    log::debug('gdd 04 $events= event::all();');?>
+
+<?php
+                    $results = App\Models\events()::All();
+                    $event = new \App\Models\event();
+?>
                     <form name='f1' method="POST" action="process_post.php">
                         <fieldset>
                             <legend> Select an Event </legend>
 
                             <select class="dropdown" id="eventsdd" name="eventsdropdown" title="Events Dropdown"  onclick="doclick(this)" >
                               <?php
-                                 foreach ($events as $event){?>
+                                 foreach ($results as $event){?>
                                  <option value=
                                    <?php echo $event['id'] ?>">"
                                    <?php echo $event['event'];  ?>
                                  </option>
-                            </select> <?php } ?>
+                            </select>
 
              <p>
 
-{{--                <input type="text" id="hideme">--}}
-{{--                <input type="text" id="ename" name="EVENT" value = "" placeholder="Select an existing or enter a new event">--}}
+                <input type="text" id="hideme">
+                <input type="text" id="ename" name="EVENT" value = "" placeholder="Select an existing or enter a new event">
             </p>
             <p>
                 <label id="label4" for="DESCRIPTION">Description</label>

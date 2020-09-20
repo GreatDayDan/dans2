@@ -10,15 +10,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29d07bbd-8e98-46dd-b328-e87cc44aaa97" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_9_18_20__12_30_AM.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Events/jolly.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dans2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dans2.iml" afterDir="false" />
+    <list default="true" id="29d07bbd-8e98-46dd-b328-e87cc44aaa97" name="Default Changelist" comment="working on L8 w/Livewire.">
+      <change afterPath="$PROJECT_DIR$/app/Models/event.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/base.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/event.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/events.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Events/jolly.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EventController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/eventsdd.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/eventsdd.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -209,8 +214,16 @@
       <updated>1600180371318</updated>
       <workItem from="1600180372334" duration="42364000" />
       <workItem from="1600407026207" duration="2493000" />
-      <workItem from="1600425047410" duration="23652000" />
+      <workItem from="1600425047410" duration="59246000" />
     </task>
+    <task id="LOCAL-00001" summary="working on L8 w/Livewire.">
+      <created>1600526194307</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600526194307</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,12 +243,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="working on L8 w/Livewire." />
+    <option name="LAST_COMMIT_MESSAGE" value="working on L8 w/Livewire." />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1409" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600255281965">
       <screen x="-1440" y="0" width="1152" height="680" />
     </state>
     <state x="-1409" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/-1440.0.1152.680@-1440.0.1152.680" timestamp="1600255281965" />
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600588488696">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/-1440.0.1152.680@0.0.1536.824" timestamp="1600588488696" />
     <state x="-1084" y="81" key="FileChooserDialogImpl" timestamp="1600425034193">
       <screen x="-1440" y="0" width="1152" height="680" />
     </state>
@@ -264,6 +283,10 @@
       <screen x="-1440" y="0" width="1152" height="680" />
     </state>
     <state x="-1355" y="0" key="SettingsEditor/0.0.1536.824/-1440.0.1152.680@-1440.0.1152.680" timestamp="1600180385979" />
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1600526384320">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1440.0.1152.680@0.0.1536.824" timestamp="1600526384320" />
     <state x="-1046" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600451819944">
       <screen x="-1440" y="0" width="1152" height="680" />
     </state>
@@ -272,10 +295,11 @@
       <screen x="-1440" y="0" width="1152" height="680" />
     </state>
     <state x="-1300" y="131" width="966" height="494" key="dock-window-1/0.0.1536.824/-1440.0.1152.680@-1440.0.1152.680" timestamp="1600344408791" />
-    <state x="-1155" y="18" width="581" height="589" key="find.popup" timestamp="1600456966284">
-      <screen x="-1440" y="0" width="1152" height="680" />
+    <state x="380" y="22" width="775" height="714" key="find.popup" timestamp="1600617356139">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1155" y="18" width="581" height="589" key="find.popup/0.0.1536.824/-1440.0.1152.680@-1440.0.1152.680" timestamp="1600456966284" />
+    <state x="380" y="22" width="775" height="714" key="find.popup/0.0.1536.824/-1440.0.1152.680@0.0.1536.824" timestamp="1600617356139" />
     <state x="-1207" y="151" key="run.anything.popup" timestamp="1600453479477">
       <screen x="-1440" y="0" width="1152" height="680" />
     </state>
