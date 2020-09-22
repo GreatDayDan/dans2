@@ -26,6 +26,6 @@ class HomeController extends Controller
     public function index()
     {
         Log::info('gdd 056 index HomeController');
-        return view('home');
+        return view('dashboard');
     }
 }

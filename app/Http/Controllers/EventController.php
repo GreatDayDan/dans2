@@ -12,9 +12,9 @@ class EventController extends Controller{
 //    public $data = 'this is a test';
     public function index()
 {
-    Log::info('gdd 05 event index() HomeController');
+    Log::info('gdd 05 event index() EventController');
     $events = event::all();
-    return view('events.index', compact(['events']));
+    return view('event.index', compact(['event']));
 
 //    $events = \App\Event::all();
 
@@ -81,7 +81,7 @@ class EventController extends Controller{
      */
     public function show(Event $event)
 {
-    Log::info('gdd 08 event show() HomeController'  .$event->id);
+    Log::info('gdd 08 event show() EventController'  .$event->id);
     return view('event.show',compact('event'));
 }
 
@@ -93,8 +93,7 @@ class EventController extends Controller{
      */
     public function edit(event $event)
 {
-    Log::info('gdd 09 event edit() HomeController'  .$event->id);
-    $event = event::find($event->id);
+    Log::info('gdd 09 event edit() eventController'  .$event->id);
     return view('event.edit',compact('event'));
 }
 
@@ -113,7 +112,6 @@ class EventController extends Controller{
             'event'=>'required',
             'description'=>'required'
         ]);
-        $event = event::find($id);
         $event->id =  $request->get('id');
         $event->user->id = $request->get('user->id');
         $event->posts->id = $request->get('posts->id');
@@ -131,7 +129,6 @@ class EventController extends Controller{
     public function destroy(event $event)
 {
     Log::info('gdd 11 Event destroy HomeController  '  .$event->id);
-    $event = event::find($event->$event->id);
     $event->delete();
 
     return redirect()->route('event.index')

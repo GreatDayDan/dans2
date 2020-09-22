@@ -5,15 +5,17 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        {{--                    @if (session('status'))--}}
-                        {{--                        <div class="alert alert-success" role="alert">--}}
-                        {{--                            {{ session('status') }}--}}
-                        {{--                        </div>--}}
-                        {{--                    @endif--}}
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
                         <?php
                         use Illuminate\Support\Facades\Log;
                         log::debug('gdd 042 events.bladegdd $events= event::all();');
+                        use app\Models\event;
+                        $events = event::all();
                         ?>
                         <form name='f1' method="POST" action="process_post.php">
                             <fieldset>
@@ -26,7 +28,7 @@
                                     {{--                                            <?php echo $event['id'] ?>">"--}}
                                     {{--                                    <?php echo $event['event'];  ?>--}}
                                     {{--                                    </option>--}}
-                                </select> }
+                                </select>
 
                                 <p>
 
