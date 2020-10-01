@@ -10,10 +10,12 @@ class EventController extends Controller{
 //$event = Event::latest()->paginate(5);
 //    public $event;
 //    public $data = 'this is a test';
+
     public function index()
 {
-    Log::info('gdd 05 event index() EventController');
+    Log::debug('gdd 05 event index() EventController');
     $events = event::all();
+    log::debug('gdd 5.1 found ' . $events->count()  .' records');;
     return view('event.index', compact(['event']));
 
 //    $events = \App\Event::all();
@@ -79,10 +81,14 @@ class EventController extends Controller{
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($event)
 {
     Log::info('gdd 08 event show() EventController'  .$event->id);
-    return view('event.show',compact('event'));
+    $post=.\DB::table('events')->where('event',$event)->first();
+    if (! array_key_exists($post, $posts)) {
+        abort(404, 'Oops, no such record');
+    }
+    return view('post',['post'=>$post]);
 }
 
     /**

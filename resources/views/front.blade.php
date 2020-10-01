@@ -64,12 +64,23 @@
 
         .m-b-md {
             margin-bottom: 30px;
+         }
+
+        .mo {
+            position: absolute;
+            right: 300px;
+            left: 250px;
+            top: 0px;
+            /*font-family: 'Nunito', sans-serif;*/
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 50;
         }
     </style>
 </head>
 <body class="antialiased">
 <div>
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+    <div class="mo relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth

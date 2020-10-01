@@ -14,8 +14,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        Log::info('gdd 055 __consrtuct HomeController');
         $this->middleware('auth');
+        Log::info('gdd 055 __consrtuct HomeController');
     }
 
     /**
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('home');
         Log::info('gdd 056 index HomeController');
-        return view('dashboard');
     }
 }

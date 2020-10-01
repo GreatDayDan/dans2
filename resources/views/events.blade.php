@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+<div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -10,28 +10,13 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        <?php
-                        use Illuminate\Support\Facades\Log;
-                        log::debug('gdd 042 events.bladegdd $events= event::all();');
-                        use app\Models\event;
-                        $events = event::all();
-                        ?>
                         <form name='f1' method="POST" action="process_post.php">
                             <fieldset>
                                 <legend> Select an Event </legend>
 
-                                <select class="dropdown" id="eventsdd" name="eventsdropdown" title="Events Dropdown" >
-                                    {{--                                    <?php--}}
-                                    {{--                                    foreach ($events as $event){?>--}}
-                                    {{--                                    <option value=--}}
-                                    {{--                                            <?php echo $event['id'] ?>">"--}}
-                                    {{--                                    <?php echo $event['event'];  ?>--}}
-                                    {{--                                    </option>--}}
-                                </select>
-
+{{--                                <select class="dropdown" id="eventsdd" name="eventsdropdown" title="Events Dropdown" >--}}
+{{--                                </select>--}}
                                 <p>
-
                                     <input type="text" id="hideme">
                                     <input type="text" id="ename" name="EVENT" value = "" placeholder="Select an existing or enter a new event">
                                 </p>
