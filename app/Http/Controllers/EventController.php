@@ -14,9 +14,12 @@ class EventController extends Controller{
     public function index()
 {
     Log::debug('gdd 05 event index() EventController');
-    $events = event::all();
+//    $events = event::all();
+    $events = event::orderBy('event')->pluck('event', 'id', 'descripton');
+
+//    dd($events);
     log::debug('gdd 5.1 found ' . $events->count()  .' records');;
-    return view('event.index', compact(['event']));
+    return view('events', compact(['events']));
 
 //    $events = \App\Event::all();
 
@@ -81,15 +84,20 @@ class EventController extends Controller{
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show($event)
-{
-    Log::info('gdd 08 event show() EventController'  .$event->id);
-    $post=.\DB::table('events')->where('event',$event)->first();
-    if (! array_key_exists($post, $posts)) {
-        abort(404, 'Oops, no such record');
-    }
+    public function show($id){
+//{   alert('event show() EventController  .$event->id);');
+    Log::info('gdd 08 event show() EventController'  .$id);
+    $post=\DB::table('events')->where('id',$id)->first();
+//    if (! array_key_exists($post, 'posts')) {
+//        abort(404, 'Oops, no such record');
+//    }
+
     return view('post',['post'=>$post]);
+//    $post = Post::where('post_id', $id)->first();
+
+//    return View::make('posts.show', compact('post'));
 }
+
 
     /**
      * Show the form for editing the specified resource.

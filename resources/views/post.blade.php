@@ -9,6 +9,6 @@
 </head>
 <body>
   <h1>Ny Blog Post</h1>
-  <p>{{$post->body}}</p>
+  <p>{{$post}}</p>
 </body>
 </html>

@@ -67,6 +67,5 @@
     </style>
 </head>
 <body>
-
-
+@yield('content')
 @endsection

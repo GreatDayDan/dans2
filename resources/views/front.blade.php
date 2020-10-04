@@ -92,7 +92,7 @@
                     <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                 @endif
             @endif
-                <a href="{{ url('/events') }}">Show Events</a>
+                <a href="{{ url('/event5') }}">--Show Events</a>
         </div>
     @endif
     <div class="container">

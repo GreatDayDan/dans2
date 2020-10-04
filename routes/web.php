@@ -27,10 +27,10 @@ Route::get('/home1', function () {
     return view('welcome');
 });
 
-Route::get('/home2', [App\Http\Controllers\HomeController::class, 'index'])->name('about');
+Route::get('/home2/{id}', [App\Http\Controllers\HomeController::class, 'index'])->name('about');
 
-Route::get('/home3', 'App\Http\Controllers\HomeController@index');
-Route::get('/home4', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home3/{id}', 'App\Http\Controllers\HomeController@show');
+Route::get('/home4/', [App\Http\Controllers\HomeController::class, 'show'])->name('showwelcome');
 
 
 Route::get('/event', function () {
@@ -44,6 +44,7 @@ Route::get('/event2', function () {
 });
 Route::get('/event3', 'App\Http\Controllers\EventController@index');
 Route::get('/event4', 'App\Http\Controllers\EventController@show');
+Route::get('/event5', 'App\Http\Controllers\EventController@index');
 
 Route::get('/front', function () {
     log::debug('gdd 04 Route::get(/front,  function () {return view(front)');
@@ -58,7 +59,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/events', function () {
     log::debug('gdd 031 Route:
-    :get(/events,  function () {return view(eventsdd)');
+    :get(/events,  function () {return view(events)');
     return view('events');
 });
 //

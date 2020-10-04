@@ -32,13 +32,13 @@
             <!-- Page Content -->
             <main>
 
-                @yield('events')
+                @yield('content')
                 @show
 {{--                {{ $slot }}--}}
             </main>
         </div>
 
-        @stack('modals')
+{{--        @stack('modals')--}}
 
         @livewireScripts
     </body>
