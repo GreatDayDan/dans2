@@ -15,11 +15,17 @@ class EventController extends Controller{
 {
     Log::debug('gdd 05 event index() EventController');
 //    $events = event::all();
-    $events = event::orderBy('event')->pluck('event', 'id', 'descripton');
-
+    $events = event::all();  //orderBy('event')->pluck('event', 'id', 'description');
+    $jevents = JSON_encode($events, true);
+    $jdevents = JSON_decode($jevents);
+//        $events = db::table('events');
 //    dd($events);
-    log::debug('gdd 5.1 found ' . $events->count()  .' records');;
-    return view('events', compact(['events']));
+    log::debug('gdd 5.1 found ' . $events->count());
+//    log::debug(var_dump($jdevents));
+//    dd($jevents);
+        var_dump($jdevents);
+    return view('events', compact(['jdevents']));
+
 
 //    $events = \App\Event::all();
 

@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,4 +126,13 @@ Route::get('test', function() {
 
     var_dump($test);
 
+});
+//route search
+Route::get('/search',['uses' => 'SearchController@getSearch','as' => 'search']);
+Route::get('/{student}',['uses' => 'HomeController@student','as' => 'student.show']);
+
+Route::get('/home8', [HomeController::class, 'index'])->name('home');
+Route::get('/home9', function () {
+    log::debug('gdd 09 Route::get(/,  function () {return view(welcome');
+    return view('menu');
 });

@@ -34,7 +34,7 @@ class HomeController extends Controller
 //{   alert('event show() EventController  .$event->id);');
         Log::info('gdd 06.1 home show() HomeController'  .$id);
         $user=\DB::table('users')->where('id',$id)->first();
-        dd($user);
+//        dd($user);
 //    if (! array_key_exists($post, 'posts')) {
 //        abort(404, 'Oops, no such record');
 //    }
@@ -49,5 +49,15 @@ class HomeController extends Controller
         return View::make('home.welcome');
     }
 
+    public function home7()
+    {
+        log::debug('gdd 07.1 home7');
+        return View::make('home7');
+    }
+    public function student($student)
+    {
+        log::debug('gdd 07.2 student');
 
+        //here display student detail
+    }
 }
