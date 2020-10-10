@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+//use function MongoDB\BSON\toJSON;
 
 class EventController extends Controller{
 //$event = Event::latest()->paginate(5);
@@ -16,14 +17,14 @@ class EventController extends Controller{
     Log::debug('gdd 05 event index() EventController');
 //    $events = event::all();
     $events = event::all();  //orderBy('event')->pluck('event', 'id', 'description');
-    $jevents = JSON_encode($events, true);
+    $jevents = JSON_encode($events, false);
     $jdevents = JSON_decode($jevents);
 //        $events = db::table('events');
 //    dd($events);
     log::debug('gdd 5.1 found ' . $events->count());
 //    log::debug(var_dump($jdevents));
 //    dd($jevents);
-        var_dump($jdevents);
+//    var_dump($jdevents);
     return view('events', compact(['jdevents']));
 
 

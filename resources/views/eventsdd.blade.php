@@ -5,31 +5,20 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-{{--                    @if (session('status'))--}}
-{{--                        <div class="alert alert-success" role="alert">--}}
-{{--                            {{ session('status') }}--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-                    <?php
-                    use Illuminate\Support\Facades\Log;
-                    log::debug('gdd 04 $events= event::all();');?>
-
-<?php
-                    $results = App\Models\events()::All();
-                    $event = new \App\Models\event();
-?>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <form name='f1' method="POST" action="process_post.php">
                         <fieldset>
                             <legend> Select an Event </legend>
 
-                            <select class="dropdown" id="eventsdd" name="eventsdropdown" title="Events Dropdown"  onclick="doclick(this)" >
-                              <?php
-                                 foreach ($results as $event){?>
-                                 <option value=
-                                   <?php echo $event['id'] ?>">"
-                                   <?php echo $event['event'];  ?>
-                                 </option>
+                            <select name="event_id" id="event_id" class="form-control" required onclose="">
+                                @foreach($jdevents as $event)
+                                    <option name="pid" value="{{$event->id}}" id="event">{{$event->event}}</option>
+
+                                @endforeach
                             </select>
 
              <p>
