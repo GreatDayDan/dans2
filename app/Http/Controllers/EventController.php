@@ -21,10 +21,10 @@ class EventController extends Controller{
     $jdevents = JSON_decode($jevents);
 //        $events = db::table('events');
 //    dd($events);
-    log::debug('gdd 5.1 found ' . $events->count());
+    log::debug('gdd 5.1 found ' . $events->count() . ' events.');
 //    log::debug(var_dump($jdevents));
 //    dd($jevents);
-//    var_dump($jdevents);
+    var_dump($jevents);
     return view('events', compact(['jdevents']));
 
 
@@ -50,40 +50,52 @@ class EventController extends Controller{
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
 {
     Log::info('gdd 07 event store() HomeController' .$request->id);
-    $request->validate([
+    $this->validate(request(),[
+        //put fields to be validated here
         'event'=>'required',
-        'deascription'=>'required'
+        'description'=>'required',
+        'user->id'=>'required'
     ]);
+//
+//    $user= new User();
+//    $user->username= $request['username'];
+//    $user->company= $request['company'];
+//    // add other fields
+//    $user->save();
+//
+//    return redirect('/');
+
+
+//    $request->validate([
+//        'event'=>'required',
+//        'description'=>'required',
+//        'user->id'=>'required'
+//    ]);
     $event = new event([
         'user->id' => $request->get('user->id'),
         'posts-id' => $request->get('posts-id'),
         'event' => $request->get('event'),
-        'description' => $request->get('job_title')
+        'description' => $request->get('description')
     ]);
-    $event->save();
-    return redirect('/events')->with('success', 'Event saved!');
+//    $event->save();7
+//    return redirect('/events')->with('success', 'Event saved!');
+//
+
 //    $request->validate([
 //        'event' => 'required',
 //        'description' => 'required'
 //    ]);
-//    \App\Event::create([
-//        'id' => $request->get('id'),
-//        'user->id' => $request->get('user->id'),
-//        'posts->id' => $request->get('posts->id'),
-//        'event' => $request->get('event'),
-//        'description' => $request->get('description')
-//    ]);
 //    return redirect('/events');
 //        Event::create($request->all());
 
-    return redirect()->route('event.index')
+    return redirect()->route('events.index')
         ->with('success','Event created successfully.');
-}
+} //save
 
     /**
      * Display the specified resource.

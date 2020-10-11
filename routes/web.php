@@ -136,3 +136,8 @@ Route::get('/home9', function () {
     log::debug('gdd 09 Route::get(/,  function () {return view(welcome');
     return view('menu');
 });
+Route::get('/store', 'App\Http\Controllers\EventController@store');
+
+Route::post('/save', array('as' => 'form_url', 'uses' => 'EventController@save'));
+
+

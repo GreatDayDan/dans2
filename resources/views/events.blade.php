@@ -6,12 +6,11 @@
             {{ session('status') }}
         </div>
     @endif
-    @eventId = '-1';
-    <form name='f1' method="POST" action="process_post.php">
+    <form name='f1' method="POST" action="/save">
         <fieldset>
             <legend>Select an Event </legend>
-{{--            <div class="form-group">--}}
-{{--                <label for="event_id">Choose an Event</label>--}}
+            <div class="form-group">
+                <label for="event_id">Choose an Event</label>
                 <select name="event_id" id="event_id" class="form-control" required onChange="changeDescription(1)">
                     @foreach($jdevents as $event)
                         <option name="pid" value="{{$event->id}}" id="event">{{$event->event}}</option>
@@ -27,7 +26,7 @@
                     <textarea id ="descr" rows="5" cols="50" form="f1" name="DESCRIPTION" placeholder="Describe the event" id="DESCRIPTION"></textarea>
                 </p>
 
-                <input type='submit' id='submit_id' name='submit_id'</input>
+                <input type='submit' id='submit_id' name='submit_id'>
 
         </fieldset>
 </div>
