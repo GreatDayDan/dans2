@@ -1,81 +1,74 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\HomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Auth::routes();
+Route::get('/home', function () {
+    log::debug('gdd 02 Route::get(/home,  function () {return view(welcome');
+    return view('welcome');
+});
 
 Route::get('/', function () {
     log::debug('gdd 01 Route::get(/,  function () {return view(welcome');
     return view('welcome');
 });
-
-//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//    return view('dashboard');
-//})->name('dashboard');
-
-Auth::routes();
-Route::get('/home1', function () {
-    log::debug('gdd 02 Route::get(/home,  function () {return view(welcome');
-    return view('welcome');
-});
-
-Route::get('/home2/{id}', [App\Http\Controllers\HomeController::class, 'index'])->name('about');
-
-Route::get('/home3/{id}', 'App\Http\Controllers\HomeController@show');
-Route::get('/home4/', [App\Http\Controllers\HomeController::class, 'show'])->name('showwelcome');
-
-
-Route::get('/event', function () {
-    log::debug('gdd 03.1 Route::get(/event,  function () {return view(event)');
-    return view('event');
-});
-
-Route::get('/event2', function () {
-    log::debug('gdd 03.2 Route::get(/event,  function () {return view(event)');
-    return view('event');
-});
-Route::get('/event3', 'App\Http\Controllers\EventController@index');
-Route::get('/event4', 'App\Http\Controllers\EventController@show');
-Route::get('/event5', 'App\Http\Controllers\EventController@index');
+Route::post('/store/{id}', 'App\Http\Controllers\EventController@store');
+Route::post('/save',  'App\Http\Controllers\EventController@save');
+Route::get('/events', 'App\Http\Controllers\EventController@index');
 
 Route::get('/front', function () {
     log::debug('gdd 04 Route::get(/front,  function () {return view(front)');
     return view('front');
 });
 
-
 Route::get('/dashboard', function () {
-    log::debug('gdd 05 Route::get(/dashboard,  function () {return view(dasshboard)');
+    log::debug('gdd 05 Route::get(/dashboard,  function () {return view(dashboard)');
     return view('dashboard');
 });
 
-Route::get('/events', function () {
-    log::debug('gdd 031 Route:
-    :get(/events,  function () {return view(events)');
-    return view('events');
+Route::get('/about_mo', function () {
+    log::debug('gdd 03.1 Route about_mo');
+    return view('about');
 });
+
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
+
+
+//Route::get('/home2/{id}', [App\Http\Controllers\HomeController::class, 'index'])->name('about');
+
+//Route::get('/home3/{id}', 'App\Http\Controllers\HomeController@show');
+//Route::get('/home4/', [App\Http\Controllers\HomeController::class, 'show'])->name('showelcome');
+
+
+//Route::get('/event', function () {
+//    log::debug('gdd 03.1 Route::get(/event,  function () {return view(event)');
+//    return view('event');
+//});
+
+//Route::get('/event2', function () {
+//    log::debug('gdd 03.2 Route::get(/event,  function () {return view(event)');
+//    return view('event');
+//});
+//Route::get('/event3', 'App\Http\Controllers\EventController@index');
+//Route::get('/event4', 'App\Http\Controllers\EventController@show');
+
+//Route::get('/events', function () {
+//    log::debug('gdd 031 Route:
+//    :get(/events,  function () {return view(events)');
+//    return view('events');
+//});
 //
 //Route::resource('/events', 'EventController');
 
 
-Route::get('/about_mo', function () {
-   log::debug('gdd 03.1 Route about_mo');
-   return view('about');
-});
 
-Route::resource('events2', 'EventController');
+//Route::resource('events2', 'EventController');
 
-Route::resource('home5', 'HomeController');
+//Route::resource('home5', 'HomeController');
 
 //Route::get('/home6', function()
 //{
@@ -98,46 +91,43 @@ Route::resource('home5', 'HomeController');
 //    return View::make('pages.contact');
 //});
 
-Route::resource('HelloWorld', 'HelloWorldController@index');
+//Route::resource('HelloWorld', 'HelloWorldController@index');
+//
+//Route::get('blade', function () {
+//    log::debug('gdd 08.1 Route blade');
+//    return view('child');
+//});
 
-Route::get('blade', function () {
-    log::debug('gdd 08.1 Route blade');
-    return view('child');
-});
+//Route::get('post', function (){
+//    echo('post');
+//  log::debug('gdd 09.1 Route post');
+//  return view('post');
+//});
 
-Route::get('post', function (){
-    echo('post');
-  log::debug('gdd 09.1 Route post');
-  return view('post');
-});
+//Route::get('/post/{$post}', 'PostController@show');
 
-Route::get('/post/{$post}', 'PostController@show');
-
-Route::get('items/get-item-status', array('as' => 'getItemStatus', 'uses' =>  'ItemsController@getItemStatus'));
+//Route::get('items/get-item-status', array('as' => 'getItemStatus', 'uses' =>  'ItemsController@getItemStatus'));
 //Route::get('test/{var?}', 'TestController@index');
 
-Route::get('test', function() {
-
-    $test = new test;
-
-    dd($test);
-
-    Log::info($test); // will show in your log
-
-    var_dump($test);
-
-});
+//Route::get('test', function() {
+//
+//    $test = new test;
+//
+//    dd($test);
+//
+//    Log::info($test); // will show in your log
+//
+//    var_dump($test);
+//
+//});
 //route search
-Route::get('/search',['uses' => 'SearchController@getSearch','as' => 'search']);
-Route::get('/{student}',['uses' => 'HomeController@student','as' => 'student.show']);
+//Route::get('/search',['uses' => 'SearchController@getSearch','as' => 'search']);
+//Route::get('/{student}',['uses' => 'HomeController@student','as' => 'student.show']);
 
-Route::get('/home8', [HomeController::class, 'index'])->name('home');
-Route::get('/home9', function () {
-    log::debug('gdd 09 Route::get(/,  function () {return view(welcome');
-    return view('menu');
-});
-Route::get('/store', 'App\Http\Controllers\EventController@store');
-
-Route::post('/save', array('as' => 'form_url', 'uses' => 'EventController@save'));
+//Route::get('/home8', [HomeController::class, 'index'])->name('home');
+//Route::get('/home9', function () {
+//    log::debug('gdd 09 Route::get(/,  function () {return view(welcome');
+//    return view('menu');
+//});
 
 

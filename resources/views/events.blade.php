@@ -1,12 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    use app\http\controllers\EventController;
 <div class="container">
   @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
         </div>
     @endif
-    <form name='f1' method="POST" action="/save">
+      <form name='f1' method="POST" action="{{ route('events.store')}}">
+          @csrf
         <fieldset>
             <legend>Select an Event </legend>
             <div class="form-group">
@@ -32,4 +34,4 @@
 </div>
     </form>
   </div>
-    @endsection
+@endsection

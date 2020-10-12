@@ -24,7 +24,7 @@ class EventController extends Controller{
     log::debug('gdd 5.1 found ' . $events->count() . ' events.');
 //    log::debug(var_dump($jdevents));
 //    dd($jevents);
-    var_dump($jevents);
+//    var_dump($jevents);
     return view('events', compact(['jdevents']));
 
 
@@ -42,7 +42,7 @@ class EventController extends Controller{
      */
     public function create()
 {
-    Log::info('gdd 06 event.create HomeController');
+    Log::info('gdd 06 event.create EventController');
     return view('event.create');
 }
 
@@ -54,7 +54,7 @@ class EventController extends Controller{
      */
     public function store(Request $request)
 {
-    Log::info('gdd 07 event store() HomeController' .$request->id);
+    Log::info('gdd 07 event store() EventController' .$request->id);
     $this->validate(request(),[
         //put fields to be validated here
         'event'=>'required',
@@ -140,7 +140,7 @@ class EventController extends Controller{
      */
     public function update(Request $request, event $event)
     {
-        Log::info('gdd 10 event update() HomeController  '  . $event->id);
+        Log::info('gdd 10 event update() EventController  '  . $event->id);
         $request->validate([
             'event'=>'required',
             'description'=>'required'
@@ -161,7 +161,7 @@ class EventController extends Controller{
      */
     public function destroy(event $event)
 {
-    Log::info('gdd 11 Event destroy HomeController  '  .$event->id);
+    Log::info('gdd 11 Event destroy EventController  '  .$event->id);
     $event->delete();
 
     return redirect()->route('event.index')
