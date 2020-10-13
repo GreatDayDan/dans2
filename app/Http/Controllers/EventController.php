@@ -13,32 +13,26 @@ class EventController extends Controller{
 //    public $data = 'this is a test';
 
     public function index()
-{
-    Log::debug('gdd 05 event index() EventController');
+    {
+        Log::debug('gdd 05.1 event index() EventController');
 //    $events = event::all();
-    $events = event::all();  //orderBy('event')->pluck('event', 'id', 'description');
-    $jevents = JSON_encode($events, false);
-    $jdevents = JSON_decode($jevents);
+        $events = event::all();  //orderBy('event')->pluck('event', 'id', 'description');
+        $jevents = JSON_encode($events, false);
+        $jdevents = JSON_decode($jevents);
 //        $events = db::table('events');
 //    dd($events);
-    log::debug('gdd 5.1 found ' . $events->count() . ' events.');
+        log::debug('gdd 05.2 found ' . $events->count() . ' events.');
 //    log::debug(var_dump($jdevents));
 //    dd($jevents);
 //    var_dump($jevents);
-    return view('events', compact(['jdevents']));
+        return view('events', compact(['jdevents']));
 
-
-//    $events = \App\Event::all();
-
-//    return view('viewevents', ['allEvents' => $events]);
-//    return view('event.index',compact('event'))
-//        ->with('i', (request()->input('page', 1) - 1) * 5);
-}
+    }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
 {
@@ -54,48 +48,30 @@ class EventController extends Controller{
      */
     public function store(Request $request)
 {
-    Log::info('gdd 07 event store() EventController' .$request->id);
+    Log::info('gdd 07.1 event store() EventController' .$request->id);
+
     $this->validate(request(),[
         //put fields to be validated here
         'event'=>'required',
         'description'=>'required',
         'user->id'=>'required'
     ]);
-//
-//    $user= new User();
-//    $user->username= $request['username'];
-//    $user->company= $request['company'];
-//    // add other fields
-//    $user->save();
-//
-//    return redirect('/');
+    Log::info('gdd 07.2 event store() EventController' .$request->id);
 
-
-//    $request->validate([
-//        'event'=>'required',
-//        'description'=>'required',
-//        'user->id'=>'required'
-//    ]);
-    $event = new event([
+    $event = new event(array(
         'user->id' => $request->get('user->id'),
         'posts-id' => $request->get('posts-id'),
         'event' => $request->get('event'),
-        'description' => $request->get('description')
-    ]);
-//    $event->save();7
-//    return redirect('/events')->with('success', 'Event saved!');
-//
+        'description' => $request->get('description')));
+        $event->save();
+    Log::info('gdd 07.3 event store() EventController' . $event);
+//        return view ('events');
+//    return redirect('/events')->with('success', 'event saved!');
+        return back()->withSuccess('Event added successfullyz!');
 
-//    $request->validate([
-//        'event' => 'required',
-//        'description' => 'required'
-//    ]);
-//    return redirect('/events');
-//        Event::create($request->all());
-
-    return redirect()->route('events.index')
-        ->with('success','Event created successfully.');
-} //save
+//        return redirect()->route('/events')
+//          ->with('success','Event created successfully.');
+} //store
 
     /**
      * Display the specified resource.
@@ -167,4 +143,52 @@ class EventController extends Controller{
     return redirect()->route('event.index')
         ->with('success','event deleted successfully');
 }
+// https://laracasts.com/discuss/channels/laravel/laravel-save-input-values-for-later
+    public function step1(Request $request)
+    {
+        log::debug('gdd 11.1 '. $request);
+        if($request->isMethod('post')) {
+            // do some error checking via $this->validate();
+            \Session::put('step1', $request->all());
+            return redirect()->to('/step2');
+        }
+        return view('step1');
+    }
+
+    public function step2(Request $request)
+    {
+        log::debug('gdd 11.2 '. $request);
+        if($request->isMethod('post')) {
+            // do some error checking via $this->validate();
+            \Session::put('step1', $request->all());
+            return redirect()->to('/step3');
+        }
+        return view('step2');
+    }
+
+    public function step3(Request $request)
+    {
+        log::debug('gdd 11.3 '. $request);
+        if($request->isMethod('post')) {
+            // this is the end step
+            // do some error checking via $this->validate();
+            // Merge all data from step1 - step3 in 1 array
+            $data = \Session::pull('step1', []);
+            $data = array_merge($data, \Session::pull('step1', []));
+            $data = array_merge($data, $request->all());
+            // perhaps validate the complete dataset as well via $this->validate();
+
+            dd($data);
+        }
+        return view('step3');
+    }
+    public function addEvent($eventData){
+        log::debug('gdd 12.1 addEvent, '. $eventData);
+        $this->user_id = $eventData->user_id;
+        $this->event = $eventData->event;
+//        return $this->save();
+        return redirect()->to('/events');
+    }
 }
+
+

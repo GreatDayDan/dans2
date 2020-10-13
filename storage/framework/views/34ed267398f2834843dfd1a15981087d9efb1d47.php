@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,24 +81,24 @@
 </head>
 <div>
     <div class="mo relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        @if (@Route::has('login'))
+        <?php if(@Route::has('login')): ?>
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                <?php if(auth()->guard()->check()): ?>
+                    <a href="<?php echo e(url('/dashboard')); ?>" class="text-sm text-gray-700 underline">Dashboard</a>
+                <?php else: ?>
+                    <a href="<?php echo e(route('login')); ?>" class="text-sm text-gray-700 underline">Login</a>
 
-                    @if (@Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                    @endif
-                @endif
+                    <?php if(@Route::has('register')): ?>
+                        <a href="<?php echo e(route('register')); ?>" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                    <?php endif; ?>
+                <?php endif; ?>
                 <br/>
-                <a href="{{ url('/events') }}">--Show Events</a>
+                <a href="<?php echo e(url('/events')); ?>">--Show Events</a>
             </div>
-        @endif
+        <?php endif; ?>
         <div class="container">
             <div >
-                {{--            <div class="row justify-content-center">--}}
+                
                 <div class="col-md-8">
                     <div class="card">
                         <form style="height: 104px;" target="_top"
@@ -114,7 +114,7 @@
                             Sometime later another user sees Raft the Lagoon in the dropdown list, clicks on the event name. The description is shown. The new user can request that an invite be sent to me.<br>
                             In a similar fashon, Family Names can be matched.<br>
                             So the purpose of MemoriesOf is to look for similar memories of other users. When another user shares his memories Of Diego Garcia and a close match is found, to send an invite to both users to correspond with each other.
-                            {{----}}
+                            
                         </form>
                     </div>
                 </div>
@@ -122,3 +122,4 @@
         </div>
     </div>
 </html>
+<?php /**PATH E:\wamp64\www\dans2\resources\views/front.blade.php ENDPATH**/ ?>

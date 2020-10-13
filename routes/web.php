@@ -7,17 +7,19 @@ use Illuminate\Support\Facades\Log;
 Auth::routes();
 Route::get('/home', function () {
     log::debug('gdd 02 Route::get(/home,  function () {return view(welcome');
-    return view('welcome');
+    return view('front');
 });
 
 Route::get('/', function () {
     log::debug('gdd 01 Route::get(/,  function () {return view(welcome');
     return view('welcome');
 });
-Route::post('/store/{id}', 'App\Http\Controllers\EventController@store');
-Route::post('/save',  'App\Http\Controllers\EventController@save');
-Route::get('/events', 'App\Http\Controllers\EventController@index');
+Route::get('/store', 'App\Http\Controllers\EventController@store');
+Route::put('/store', 'EventsController@store')->name('event_store_data');
 
+Route::put('/save',  'App\Http\Controllers\EventController@save');
+Route::get('/events', 'App\Http\Controllers\EventController@index');
+Route::get('/step1',  'App\Http\Controllers\EventController@step1');
 Route::get('/front', function () {
     log::debug('gdd 04 Route::get(/front,  function () {return view(front)');
     return view('front');
@@ -32,7 +34,7 @@ Route::get('/about_mo', function () {
     log::debug('gdd 03.1 Route about_mo');
     return view('about');
 });
-
+route::post('/eventdata, App\Http\Controllers\EventController@addevent');
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
