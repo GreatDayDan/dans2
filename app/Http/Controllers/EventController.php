@@ -182,10 +182,10 @@ class EventController extends Controller{
         }
         return view('step3');
     }
-    public function addEvent($eventData){
-        log::debug('gdd 12.1 addEvent, '. $eventData);
-        $this->user_id = $eventData->user_id;
-        $this->event = $eventData->event;
+    public function addEvent(Event $event){
+        log::debug('gdd 12.1 addEvent, '. $event);
+        $this->user_id = $event->user_id;
+        $this->event = $event->event;
 //        return $this->save();
         return redirect()->to('/front');
     }

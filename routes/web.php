@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
 Auth::routes();
+route::resource('/addEvent/{$event}','app\Http\Controllers\EventController');
 Route::get('/home', function () {
     log::debug('gdd 02 Route::get(/home,  function () {return view(welcome');
     return view('front');
@@ -40,7 +41,6 @@ route::post('/addEvent1',function () {
     return view('about');
 });
 
-route::put('/addEvent','EventController@addEvent');
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');

@@ -1,19 +1,19 @@
-@extends('layouts.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
-  @if (session('status'))
+  <?php if(session('status')): ?>
         <div class="alert alert-success" role="alert">
-            {{ session('status') }}
+            <?php echo e(session('status')); ?>
+
         </div>
-    @endif
-      <form name='f1' action="/addEvent/{$event}"  method="post">
-          @csrf
+    <?php endif; ?>
+      <form name='f1' action="/addEvent1"  method="put">
+          <?php echo csrf_field(); ?>
           <div class="form-group">
               <label for="event_id">Choose an Event</label>
               <select name="event_id" id="event_id" class="form-control" required onChange="ChangeDescription.js($this=>'id')">
-                  @foreach($jdevents as $event)
-                      <option name="pid" value="{{$event->id}}" id="event">{{$event->event}}</option>
-                  @endforeach
+                  <?php $__currentLoopData = $jdevents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option name="pid" value="<?php echo e($event->id); ?>" id="event"><?php echo e($event->event); ?></option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
               <p>
                   <input type="text" id="hideme">
@@ -29,4 +29,6 @@
           </div>
     </form>
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\wamp64\www\dans2\resources\views/events.blade.php ENDPATH**/ ?>
