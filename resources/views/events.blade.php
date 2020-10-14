@@ -6,11 +6,11 @@
             {{ session('status') }}
         </div>
     @endif
-      <form name='f1' action="/eventdata"  method="post"  onchange="ChangeDescription.js($this=>id)">
+      <form name='f1' action="/addEvent1"  method="put">
           @csrf
           <div class="form-group">
               <label for="event_id">Choose an Event</label>
-              <select name="event_id" id="event_id" class="form-control" required onChange="changeDescription(1)">
+              <select name="event_id" id="event_id" class="form-control" required onChange="ChangeDescription.js($this=>'id')">
                   @foreach($jdevents as $event)
                       <option name="pid" value="{{$event->id}}" id="event">{{$event->event}}</option>
                   @endforeach

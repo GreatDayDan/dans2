@@ -187,7 +187,7 @@ class EventController extends Controller{
         $this->user_id = $eventData->user_id;
         $this->event = $eventData->event;
 //        return $this->save();
-        return redirect()->to('/events');
+        return redirect()->to('/front');
     }
 }
 

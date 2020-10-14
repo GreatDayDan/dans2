@@ -34,7 +34,14 @@ Route::get('/about_mo', function () {
     log::debug('gdd 03.1 Route about_mo');
     return view('about');
 });
-route::post('/eventdata, App\Http\Controllers\EventController@addevent');
+
+route::post('/addEvent1',function () {
+    log::debug('gdd 07 Route::post(/addEvent, function () {return view(front)');
+    return view('about');
+});
+
+route::put('/addEvent','EventController@addEvent');
+
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
