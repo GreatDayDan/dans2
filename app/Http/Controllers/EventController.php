@@ -25,7 +25,8 @@ class EventController extends Controller{
 //    log::debug(var_dump($jdevents));
 //    dd($jevents);
 //    var_dump($jevents);
-        return view('events', compact(['jdevents']));
+//    var_dump($events);
+        return view('events', compact(['events']));
 
     }
 
@@ -77,7 +78,7 @@ class EventController extends Controller{
      * Display the specified resource.
      *
      * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show($id){
 //{   alert('event show() EventController  .$event->id);');
@@ -98,7 +99,7 @@ class EventController extends Controller{
      * Show the form for editing the specified resource.
      *
      * @param  \App\event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit(event $event)
 {
@@ -112,7 +113,7 @@ class EventController extends Controller{
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, event $event)
     {
@@ -133,7 +134,7 @@ class EventController extends Controller{
      * Remove the specified resource from storage.
      *
      * @param  \App\event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(event $event)
 {
@@ -144,44 +145,44 @@ class EventController extends Controller{
         ->with('success','event deleted successfully');
 }
 // https://laracasts.com/discuss/channels/laravel/laravel-save-input-values-for-later
-    public function step1(Request $request)
-    {
-        log::debug('gdd 11.1 '. $request);
-        if($request->isMethod('post')) {
-            // do some error checking via $this->validate();
-            \Session::put('step1', $request->all());
-            return redirect()->to('/step2');
-        }
-        return view('step1');
-    }
-
-    public function step2(Request $request)
-    {
-        log::debug('gdd 11.2 '. $request);
-        if($request->isMethod('post')) {
-            // do some error checking via $this->validate();
-            \Session::put('step1', $request->all());
-            return redirect()->to('/step3');
-        }
-        return view('step2');
-    }
-
-    public function step3(Request $request)
-    {
-        log::debug('gdd 11.3 '. $request);
-        if($request->isMethod('post')) {
-            // this is the end step
-            // do some error checking via $this->validate();
-            // Merge all data from step1 - step3 in 1 array
-            $data = \Session::pull('step1', []);
-            $data = array_merge($data, \Session::pull('step1', []));
-            $data = array_merge($data, $request->all());
-            // perhaps validate the complete dataset as well via $this->validate();
-
-            dd($data);
-        }
-        return view('step3');
-    }
+//    public function step1(Request $request)
+//    {
+//        log::debug('gdd 11.1 '. $request);
+//        if($request->isMethod('post')) {
+//            // do some error checking via $this->validate();
+//            \Session::put('step1', $request->all());
+//            return redirect()->to('/step2');
+//        }
+//        return view('step1');
+//    }
+//
+//    public function step2(Request $request)
+//    {
+//        log::debug('gdd 11.2 '. $request);
+//        if($request->isMethod('post')) {
+//            // do some error checking via $this->validate();
+//            \Session::put('step1', $request->all());
+//            return redirect()->to('/step3');
+//        }
+//        return view('step2');
+//    }
+//
+//    public function step3(Request $request)
+//    {
+//        log::debug('gdd 11.3 '. $request);
+//        if($request->isMethod('post')) {
+//            // this is the end step
+//            // do some error checking via $this->validate();
+//            // Merge all data from step1 - step3 in 1 array
+//            $data = \Session::pull('step1', []);
+//            $data = array_merge($data, \Session::pull('step1', []));
+//            $data = array_merge($data, $request->all());
+//            // perhaps validate the complete dataset as well via $this->validate();
+//
+//            dd($data);
+//        }
+//        return view('step3');
+//    }
     public function addEvent(Event $event){
         log::debug('gdd 12.1 addEvent, '. $event);
         $this->user_id = $event->user_id;
