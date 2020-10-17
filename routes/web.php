@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
 Auth::routes();
-route::resource('event','app\Http\Controllers\EventController');
+route::resource('events1','app\Http\Controllers\EventController::class');
 Route::get('/home', function () {
     log::debug('gdd 02 Route::get(/home,  function () {return view(welcome');
     return view('front');
@@ -65,11 +65,11 @@ Route::get('/event2', function () {
 Route::get('/event3', 'App\Http\Controllers\EventController@index');
 Route::get('/event4', 'App\Http\Controllers\EventController@show');
 
-Route::get('/events', function () {
-    log::debug('gdd 031 Route:
-    :get(/events,  function () {return view(events)');
-    return view('events');
-});
+//Route::get('/events', function () {
+//    log::debug('gdd 031 Route:
+//    :get(/events,  function () {return view(events)');
+//    return view('events');
+//});
 Route::get('/home6', function()
 {
     log::debug('gdd 06.1 Route home6');
