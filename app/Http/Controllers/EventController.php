@@ -67,11 +67,11 @@ class EventController extends Controller
 
         log::debug('gdd 05.2 found ' . $events->count() . ' events.');
 //    log::debug(var_dump($jdevents));
-
+//      dd($jdevents);
 //    var_dump($jevents);
 //    var_dump($jevents);
-//        return view('events', compact(['jdevents']));
-        return view('events')->with[$jdevents];
+        return view('events', compact(['jdevents']));
+//        return view('events')->with[$jdevents];
 //        return view('events',compact('events'));
 
 //        return view('events')->with(['events' => $jdevents]);
