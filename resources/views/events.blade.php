@@ -10,14 +10,11 @@
           @csrf
           <div class="form-group">
               <label for="event_id">Choose an Event</label>
-              <select name="event_id" id="event_id" class="form-control" required
-                      onclick="ChangeDescription.js($this=>'id')">
+              <select name="event_id" id="event_id" size="" class="form-control">
                   @foreach($jdevents as $event)
-                      <option> name="pid" value={{$event->event}}</option>
+                      <option name="pid" value="{{$event->id}}" id="event">{{$event->event}}</option>
                   @endforeach
               </select>
-
-
               <p>
                   <input type="text" id="hideme">
                   <input type="text" id="ename" name="EVENT" width="600" value=""
