@@ -1,5 +1,9 @@
 <?php $__env->startSection('content'); ?>
-<div class="container">
+    <script>
+        document.getElementById("event_id").addEventListener("change", ChangeDescription);
+    </script>
+
+    <div class="container">
   <?php if(session('status')): ?>
         <div class="alert alert-success" role="alert">
             <?php echo e(session('status')); ?>

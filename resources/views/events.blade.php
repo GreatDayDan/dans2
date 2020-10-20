@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+    <script>
+        document.getElementById("event_id").addEventListener("change", ChangeDescription);
+    </script>
+
+    <div class="container">
   @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
@@ -22,7 +26,7 @@
               </p>
               <p>
                   <label id="label4" for="DESCRIPTION">Description</label>
-                  <textarea id="descr" rows="5" cols="50" form="f1" name="DESCRIPTION" placeholder="Describe the event"
+                  <textarea  rows="5" cols="50" form="f1" name="DESCRIPTION" placeholder="Describe the event"
                             id="DESCRIPTION"></textarea>
               </p>
 
